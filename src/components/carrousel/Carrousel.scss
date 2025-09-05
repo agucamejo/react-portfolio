@@ -1,0 +1,26 @@
+.slider-container{
+    width: 100%;
+    margin: 60px auto;
+    background-color: var(--color-primary-600);
+    color: var(--color-white);
+    padding: 20px 0px;
+    font-size: 28px;
+    font-weight: bolder;
+    gap: 0;
+
+    &__item{
+        display: flex !important;
+        align-items: center;
+        gap: 20px;
+        padding-left: 20px;
+    }
+}
+
+.slick-slide{
+    width: -moz-fit-content !important; 
+    width: fit-content !important;
+}
+
+// .slick-track{
+//     transform: translate3d(-2000px, 0px, 0px) !important;
+// }

@@ -1,0 +1,82 @@
+import { useState, useEffect } from 'react'
+import { Github } from '../../assets/images/Github'
+import { Link } from '../../assets/images/Link'
+import './Cards.scss'
+
+interface Project {
+  name: string
+  description: string
+  tags: string[]
+  repository: string
+  deploy: string
+  image: string
+}
+
+function Cards() {
+  const [projects, setProjects] = useState<Project[]>([])
+
+  useEffect(() => {
+    async function fetchData() {
+      const csv = await fetch('https://docs.google.com/spreadsheets/d/18-UAqkb0w6NaYkwjrSUVQDCCugdHmIHW9ikD0zBsWsE/pub?gid=0&single=true&output=csv')
+        .then((res) => res.text())
+
+      const projects = csv
+        .split('\n')
+        .slice(1)
+        .map((row) => {
+          const [name, description, tags, repository, deploy, image] = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
+
+          const formattedTags = tags ? tags.replace(/^"|"$/g, '').split(',').map(tag => tag.trim()) : []
+          const formattedImage = image ? image.replace(/^"|"$/g, '').trim() : ''
+
+          return { name, description, tags: formattedTags, repository, deploy, image: formattedImage }
+        })
+
+      setProjects(projects)
+    }
+
+    fetchData()
+  }, [])
+
+  return (
+    <div className="cards__container" id='projects'>
+      {projects.map((project, index) => (
+        <div
+          className={`cards__item ${index % 2 === 0 ? '' : 'cards__item--reverse'}`}
+          key={index}
+        >
+          {project.image && (
+            <img 
+              src={project.image.startsWith('http') ? project.image : `https://www.imghippo.com/i/${project.image}`} 
+              alt={project.name} 
+              className="cards__item-image" 
+            />
+          )}
+          <div className="cards__item-info">
+            <h4 className="cards__item-name">{project.name}</h4>
+            <span className="cards__item-description">{project.description}</span>
+            <div className="cards__item-tags">
+              {project.tags.map((tag, i) => (
+                <span key={i} className="cards__item-tag">{tag}</span>
+              ))}
+            </div>
+            <div className="cards__item-links">
+              {project.repository && (
+                <a href={project.repository} target="_blank" rel="noopener noreferrer" title='Github'>
+                  <Github />
+                </a>
+              )}
+              {project.deploy && (
+                <a href={project.deploy} target="_blank" rel="noopener noreferrer" title='Deploy'>
+                  <Link />
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export default Cards
