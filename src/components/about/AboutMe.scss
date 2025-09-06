@@ -3,12 +3,14 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    height: calc(100vh - 250px);
+    height: calc(100vh - 100px);
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 900px) {
         flex-direction: column;
-        justify-content: space-between;
-        gap: 10px;
+        text-align: center;
+        justify-content: space-evenly;
+        gap: 60px;
+        height: calc(100vh - 115px);
     }
 
     &__text{
@@ -19,9 +21,11 @@
         font-size: 16px;
         margin-left: 50px;
 
-        @media screen and (max-width: 768px) {
-            margin-left: 0px;
+        @media screen and (max-width: 900px) {
+            align-items: center;
+            margin-left: 0;
             width: 85%;
+            gap: 20px
         }
 
         &-name{
@@ -54,6 +58,11 @@
 
         @media screen and (max-width: 768px) {
             width: 80%;
+            height: auto;
+        }
+
+        @media screen and (max-width: 1025px) {
+            width: 50%;
             height: auto;
         }
     }

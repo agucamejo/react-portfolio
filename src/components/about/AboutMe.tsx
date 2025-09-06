@@ -12,7 +12,7 @@ export default function AboutMe() {
       <div className="about" id="about">
         <div className="about__text">
           <span>Hello, my name is </span>
-          <span className="about__text-name">Agustín Camejo </span>
+          <span className="about__text-name">Agustín Camejo</span>
           <span>I'm a frontend developer.</span>
           <a href={resumePDF} download="Agustin Camejo-CV.pdf" title="Download CV">
             <Button title="Resume" icon={<FilePdf />} />

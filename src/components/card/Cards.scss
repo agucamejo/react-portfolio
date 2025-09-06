@@ -17,7 +17,7 @@
         box-shadow: var(--color-secondary-600) 0px 8px 50px;
         max-width: 980px;
 
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 950px) {
             flex-direction: column;
             width: 85%;
         }
@@ -25,7 +25,7 @@
         &--reverse {
             flex-direction: row-reverse;
 
-            @media screen and (max-width: 768px) {
+            @media screen and (max-width: 950px) {
                 flex-direction: column;
                 width: 85%;
             }
@@ -81,7 +81,7 @@
             height: auto;
             border-radius: 24px;
 
-            @media screen and (max-width: 768px) {
+            @media screen and (max-width: 950px) {
                 flex-direction: column;
                 width: 100%;
                 border-bottom-left-radius: 0px;

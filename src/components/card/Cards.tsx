@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { Github } from '../../assets/images/Github'
 import { Link } from '../../assets/images/Link'
 import './Cards.scss'
+import AOS from 'aos'
+import "aos/dist/aos.css";
 
 interface Project {
   name: string
@@ -14,6 +16,14 @@ interface Project {
 
 function Cards() {
   const [projects, setProjects] = useState<Project[]>([])
+
+  useEffect(() => {
+    AOS.init({
+      duration: 800, 
+      easing: "ease-in-out",
+      once: false, 
+    });
+  }, []);
 
   useEffect(() => {
     async function fetchData() {
@@ -44,6 +54,8 @@ function Cards() {
         <div
           className={`cards__item ${index % 2 === 0 ? '' : 'cards__item--reverse'}`}
           key={index}
+          data-aos="fade-up"     
+          data-aos-delay={index * 100}
         >
           {project.image && (
             <img 
