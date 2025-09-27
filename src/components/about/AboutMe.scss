@@ -16,7 +16,6 @@
     &__text{
         display: flex;
         flex-direction: column;
-        color: var(--color-white);
         gap: 10px;
         font-size: 16px;
         margin-left: 50px;
@@ -26,6 +25,14 @@
             margin-left: 0;
             width: 85%;
             gap: 20px
+        }
+
+        &--light{
+            color: var(--color-black);
+        }
+
+        &--dark{
+            color: var(--color-white);
         }
 
         &-name{
@@ -75,10 +82,17 @@
     gap: 20px;
 
     &__line{
-        background-color: var(--color-white);
         width: 50%;
         height: 5px;
         border-radius: 10px;
+
+        &--light{
+            background-color: var(--color-black);
+        }
+
+        &--dark{
+            background-color: var(--color-white);
+        }
     }
 
     &__logo{

@@ -3,9 +3,18 @@
   align-items: center;
   justify-content: center;
   padding: 40px;
-  color: var(--color-white);
-  box-shadow: 1px -2px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px -2px 20px var(--color-neutral-900);
   border-radius: 10px;
+
+  &--dark{
+    color: var(--color-white);
+    background-color: var(--color-black);
+  }
+
+  &--light{
+    color: var(--color-neutral-900);
+    background-color: var(--color-neutral-200);
+  }
 
   @media screen and (max-width: 768px) {
     flex-direction: column;
@@ -60,22 +69,42 @@
     width: 100%;
   }
 
-  label {
+  .label {
     margin-bottom: 5px;
     font-size: 14px;
-    color: #aaa;
+
+    &--dark{
+      color: var(--color-neutral-300);
+    }
+
+    &--light{
+      color: var(--color-neutral-700);
+    }
   }
 
-  .input-container, textarea {
+  .input-container, .textarea {
     padding: 8px;
-    border: 1px solid #555;
     border-radius: 5px;
-    background-color: #333;
-    color: var(--color-white);
     font-size: 16px;
 
-    &::placeholder {
-      color: #aaa;
+    &--dark{
+      background-color: var(--color-neutral-1000);
+      color: var(--color-white);
+      border: 1px solid var(--color-neutral-800);
+
+      &::placeholder {
+        color: var(--color-neutral-300);
+      }
+    }
+
+    &--light{
+      background-color: var(--color-neutral-300);
+      color: var(--color-neutral-900);
+      border: 1px solid var(--color-neutral-300);
+
+      &::placeholder {
+        color: var(--color-neutral-700);
+      }
     }
 
     &:focus {
@@ -83,15 +112,27 @@
     }
   }
 
-  input {
+  .input {
     background-color: transparent;
     border: none;
     padding-left: 10px;
-    color: #fff;
     font-size: 16px;
+    width: 90%;
 
-    &::placeholder {
-      color: #aaa;
+    &--dark{
+      color: var(--color-white);
+
+      &::placeholder {
+        color: var(--color-neutral-300);
+      }
+    }
+
+    &--light{
+      color: var(--color-black);
+
+      &::placeholder {
+        color: var(--color-neutral-700);
+      }
     }
 
     &:focus {
@@ -110,20 +151,10 @@
 }
 
 input:-webkit-autofill {
-  -webkit-text-fill-color: #fff !important;
+  -webkit-text-fill-color: var(--color-white) !important;
 }
 
-.submit-button {
-  background-color: var(--color-secondary-700);
-  color: var(--color-white);
-  padding: 10px 20px;
-  border: none;
-  border-radius: 100px;
-  cursor: pointer;
+.button {
   transition: background-color 0.3s ease;
   align-self: flex-end;
-
-  &:hover {
-    background-color: var(--color-secondary-500);
-  }
 }

@@ -50,9 +50,16 @@
         }
 
         &-description {
-            color: var(--color-white);
             font-size: 20px;
             font-weight: 400;
+
+            &--dark{
+                color: var(--color-white);
+            }
+
+            &--light{
+                color: var(--color-dark);
+            }
         }
 
         &-tags {

@@ -1,24 +1,24 @@
 .layout{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 60px;
 
-    @media screen and (max-width: 500px) {
-      max-width: 100%;
-      padding: 0px 16px
-    }
+  @media screen and (max-width: 500px) {
+    max-width: 100%;
+    padding: 0px 16px
+  }
 
-    @media screen and (min-width: 501px) and (max-width: 768px) {
-      max-width: 100%;
-      padding: 0px 32px
-    }
+  @media screen and (min-width: 501px) and (max-width: 768px) {
+    max-width: 100%;
+    padding: 0px 32px
+  }
 
-    @media screen and (min-width: 769px) and (max-width: 929px) {
-      max-width: 700px;
-    }
+  @media screen and (min-width: 769px) and (max-width: 929px) {
+    max-width: 700px;
+  }
 
-    @media screen and (min-width: 930px) and (max-width: 1100px) {
-      max-width: 900px;
-    }
+  @media screen and (min-width: 930px) and (max-width: 1100px) {
+    max-width: 900px;
+  }
 }

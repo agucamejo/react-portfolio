@@ -1,5 +1,4 @@
 .footer {
-  color: var(--color-white);
   text-align: center;
   padding: 20px;
   position: relative;
@@ -8,6 +7,14 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  
+  &--light{
+    color: var(--color-black);
+  }
+
+  &--dark{
+    color: var(--color-white);
+  }
 }
 
 .links {
@@ -18,9 +25,16 @@
 }
 
 .link {
-  color: var(--color-white);
   text-decoration: none;
   font-size: 30px;
+
+  &--light{
+    color: var(--color-black);
+  }
+
+  &--dark{
+    color: var(--color-white);
+  }
 
   @media screen and (max-width: 768px) {
     font-size: 16px;
@@ -38,10 +52,17 @@
 .arrow-button {
   background: none;
   border: none;
-  color: var(--color-white);
   font-size: 24px;
   cursor: pointer;
   rotate: -180deg;
+
+  &--light{
+    color: var(--color-black);
+  }
+
+  &--dark{
+    color: var(--color-white);
+  }
 
   &:hover{
     filter: drop-shadow(var(--color-secondary-600) 0px 0px 10px)
@@ -57,5 +78,5 @@
 }
 
 .heart {
-  color: red;
+  color: var(--color-primary-500);
 }

@@ -45,7 +45,14 @@ body {
   font-family: var(--zt-family-root);
   font-weight: var(--zt-font-weight-medium);
   text-align: left;
-  background-color: #1A1A1A;
+  
+  &[data-theme="dark"] {
+    background-color: #1A1A1A;
+  }
+
+  &[data-theme="light"] {
+    background-color: #EDEDED;
+  }
 }
 
 [tabindex="-1"]:focus {

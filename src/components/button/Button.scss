@@ -4,20 +4,32 @@
     border-radius: 18px;
     border: none;
     cursor: pointer;
-    background-color: var(--color-white);
     font-size: 18px;
     gap: 10px;
-    padding: 6px 12px 6px 10px;
-    color: var(--color-black);
+    padding: 6px 16px 6px 16px;
     width: -moz-fit-content;
     width: -webkit-fit-content;
     width: fit-content;
 
-    &:hover{
-        background-color: var(--color-primary-100);
-    }
-
     &:focus, &:focus-visible{
         outline: none; 
+    }
+
+    &--dark{
+        color: var(--color-black);
+        background-color: var(--color-white);
+
+        &:hover{
+            background-color: var(--color-primary-100);
+        }
+    }
+
+    &--light{
+        color: var(--color-white);
+        background-color: var(--color-neutral-600);
+
+        &:hover{
+            background-color: var(--color-neutral-700);
+        }
     }
 }
