@@ -19,7 +19,7 @@ El sitio está disponible en dos idiomas (**Español** e **Inglés**) y permite 
 
 ## 🚀 Demo en vivo
 
-🔗 [Ver sitio online](https://tu-url-vercel-o-github-pages.vercel.app)
+🔗 [Ver sitio online](https://agucamejo.netlify.app)
 
 ---
 
@@ -51,7 +51,7 @@ El sitio está disponible en dos idiomas (**Español** e **Inglés**) y permite 
 
 ```bash
 src/
-├── assets/              # Imágenes, íconos y recursos estáticos
+├── assets/              # Imágenes, íconos y variables de estilos globales
 ├── components/          # Componentes reutilizables
 │   ├── header/
 │   ├── about/
@@ -59,7 +59,5 @@ src/
 │   ├── contact-form/
 │   ├── footer/
 │   └── toggle/
-├── hooks/               # Hooks personalizados (si aplica)
-├── styles/              # Estilos globales (variables, mixins)
 ├── App.tsx              # Punto principal de la aplicación
 └── main.tsx             # Render principal de React

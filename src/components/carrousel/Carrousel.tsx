@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import './Carrousel.scss';
 
 function AutoPlay() {
-  const sliderRef = useRef(null);
+  const sliderRef = useRef<Slider | null>(null);
 
   const sliderItems = [
     "JavaScript",
@@ -38,7 +38,7 @@ function AutoPlay() {
     variableWidth: true,
     beforeChange: (next: number) => {
       if (next === sliderItems.length - 1) {
-        setTimeout(() => sliderRef.current.slickGoTo(0), 1000)
+        setTimeout(() => sliderRef.current?.slickGoTo(0), 1000)
       }
     }
   };
