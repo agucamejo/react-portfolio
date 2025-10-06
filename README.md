@@ -1,4 +1,4 @@
-# 🌐 Personal Portfolio — Agustín Camejo
+# 🌐 Portfolio Personal — Agustín Camejo
 
 ![Banner](./public/preview.png)
 
