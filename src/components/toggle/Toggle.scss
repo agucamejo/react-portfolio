@@ -1,0 +1,49 @@
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+
+  &__flag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+
+  &__switch {
+    width: 46px;
+    height: 24px;
+    background-color: var(--color-primary-500);
+    border-radius: 30px;
+    position: relative;
+    transition: background 0.3s ease;
+  }
+
+  &__thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: var(--color-white);
+    transition: transform 0.3s ease;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  &__switch--right .toggle__thumb {
+    transform: translateX(22px);
+  }
+
+  &__switch--left .toggle__thumb {
+    transform: translateX(0);
+  }
+}

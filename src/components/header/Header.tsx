@@ -4,6 +4,7 @@ import { Expand } from "@theme-toggles/react"
 import NavLink from '../navlink/NavLink';
 import { Twirl as Hamburger } from 'hamburger-react';
 import './Header.scss';
+import Toggle from '../toggle/Toggle';
 
 type ActiveLink = 'about' | 'projects' | 'experience' | 'contact';
 
@@ -11,9 +12,10 @@ interface HeaderProps {
   theme: string
   language: string
   setTheme: React.Dispatch<React.SetStateAction<"light" | "dark">>
+  setLanguage: React.Dispatch<React.SetStateAction<"es" | "en">>
 }
 
-export const Header: React.FC<HeaderProps> = ({ theme, language, setTheme }) => {
+export const Header: React.FC<HeaderProps> = ({ theme, language, setTheme, setLanguage }) => {
   const translations = {
     es: {
       about: "Sobre mi",
@@ -77,6 +79,10 @@ export const Header: React.FC<HeaderProps> = ({ theme, language, setTheme }) => 
     setTheme(prev => (prev === "light" ? "dark" : "light"))
   }
 
+  const handleLanguageToggle = () => {
+    setLanguage((prev) => (prev === "en" ? "es" : "en"));
+  };
+
   return (
     <div className={`header header--${theme}`}>
       <div className='header__inner'>
@@ -91,14 +97,10 @@ export const Header: React.FC<HeaderProps> = ({ theme, language, setTheme }) => 
             />
           </div>
           <div className="header__hamburger">
-            <Hamburger toggled={isMenuOpen} toggle={setIsMenuOpen} />
+            <Hamburger toggled={isMenuOpen} toggle={setIsMenuOpen} size={18}/>
           </div>
         </header>
-        <nav
-          className={`header__navbar ${
-            isMenuOpen ? 'header__navbar--open' : ''
-          }`}
-        >
+        <nav className={`header__navbar ${isMenuOpen ? `header__navbar--open header__navbar--open--${theme}` : ''}`}>
           <NavLink
             label={t.about}
             isActive={activeLink === 'about'}
@@ -123,7 +125,23 @@ export const Header: React.FC<HeaderProps> = ({ theme, language, setTheme }) => 
             onClick={() => handleClick('contact')}
             navigateTo="#contact"
           />
+          <div className="header__language-toggle-mobile">
+            <Toggle
+              value={language as "en" | "es"} 
+              onToggle={handleLanguageToggle}
+              rightContent={<img src="https://flagcdn.com/gb.svg" alt="English" width={24} />}
+              leftContent={<img src="https://flagcdn.com/es.svg" alt="Spanish" width={24} />}
+            />
+          </div>
         </nav>
+        <div className="header__language-toggle">
+          <Toggle
+            value={language as "en" | "es"} 
+            onToggle={handleLanguageToggle}
+            rightContent={<img src="https://flagcdn.com/gb.svg" alt="English" width={24} />}
+            leftContent={<img src="https://flagcdn.com/es.svg" alt="Spanish" width={24} />}
+          />
+        </div>
       </div>
     </div>
   );
