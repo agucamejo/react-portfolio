@@ -16,6 +16,8 @@ function AutoPlay() {
     "API Rest",
     "Figma",
     "SaSS",
+    "Flutter",
+    "Kotlin",
     "JavaScript",
     "TypeScript",
     "Vue.JS",
@@ -23,7 +25,9 @@ function AutoPlay() {
     "Angular",
     "API Rest",
     "Figma",
-    "SaSS"
+    "SaSS",
+    "Flutter",
+    "Kotlin"
   ];
 
   const settings = {
@@ -40,7 +44,30 @@ function AutoPlay() {
       if (next === sliderItems.length - 1) {
         setTimeout(() => sliderRef.current?.slickGoTo(0), 1000)
       }
-    }
+    },
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          variableWidth: false
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          variableWidth: false
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          variableWidth: false
+        }
+      }
+    ]
   };
 
   return (
