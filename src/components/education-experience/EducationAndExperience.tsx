@@ -48,20 +48,25 @@ export const EducationAndExperience: React.FC<EducationAndExperienceProps> = ({ 
           },
           { 
             company: "Certant S.A",
+            companyUrl: "https://www.certant.com/",
             client: "Gire S.A & Certant S.A", 
+            clientUrl: "https://www.gire.com/",
             position: "Desarrollador web frontend",
             description: "Trabajo en el desarrollo y mejora continua de una plataforma de cobranza y flujo de fondos para el producto general de Certant relacionado al ecosistema eCashaManagement / Backoffice y sus respectivas adaptaciones para Gire S.A. Esta plataforma permite que empresas gestionen sus cobranzas multicanal, conciliaciones, presentación de deudas, integraciones bancarias y visualización consolidada de recaudaciones en tiempo real.", 
             period: "Julio 2024 - Actualidad" 
           },
           { 
             company: "Certant S.A",
+            companyUrl: "https://www.certant.com/",
             client: "Master Bus S.A",
+            clientUrl: "https://masterbus.net/",
             position: "Desarrollor móvil - Kotlin", 
             description: "Realicé aportes en el desarrollo de la aplicación para conductores de Master Bus, enfocándome en funciones de trazado de rutas, indicaciones para conductores, seguimiento en tiempo real de unidades, visualización de velocidad y control de pasajeros. Esta app permite mejorar la eficiencia del transporte, la seguridad y la coordinación logística del servicio.", 
             period: "Julio 2024 - Julio 2025" 
           },
           { 
             company: "Certant S.A",
+            companyUrl: "https://www.certant.com/",
             client: "", 
             position: "Desarrollador móvil y web - Flutter",
             description: "Participo en el desarrollo de la aplicación de gestión interna de clientes corporativos, personal, sus horas trabajadas, licencias y beneficios. Esta herramienta sirve para centralizar el control de recursos humanos, mantener trazabilidad de registros laborales y optimizar los procesos internos administrativos.",
@@ -98,20 +103,25 @@ export const EducationAndExperience: React.FC<EducationAndExperienceProps> = ({ 
           },
           { 
             company: "Certant S.A",
+            companyUrl: "https://www.certant.com/",
             client: "Gire S.A & Certant S.A", 
+            clientUrl: "https://www.gire.com/",
             position: "Frontend web developer",
             description: "I work on the development and continuous improvement of a collection and cash flow management platform for Certant’s eCashManagement / Backoffice ecosystem and its specific adaptations for Gire S.A. This platform enables companies to manage their multi-channel collections, reconciliations, debt presentation, banking integrations, and real-time visualization of collected funds in a centralized and efficient way.", 
             period: "July 2024 - Present" 
           },
           { 
             company: "Certant S.A",
+            companyUrl: "https://www.certant.com/",
             client: "Master Bus S.A",
+            clientUrl: "https://masterbus.net/",
             position: "Mobile developer - Kotlin", 
             description: "I contributed to the development of the drivers’ mobile application for Master Bus, focusing on route mapping, driving directions, real-time unit tracking, speed visualization, and passenger control. This app enhances transportation efficiency, safety, and logistical coordination across the service.", 
             period: "July 2024 - July 2025" 
           },
           { 
             company: "Certant S.A",
+            companyUrl: "https://www.certant.com/",
             client: "", 
             position: "Mobile and web developer - Flutter",
             description: "I participate in the development of an internal management application for corporate clients, staff, working hours, leaves, and benefits. This tool helps centralize human resources management, maintain traceability of employee records, and optimize internal administrative processes.",
@@ -163,8 +173,21 @@ export const EducationAndExperience: React.FC<EducationAndExperienceProps> = ({ 
             >
               <div className="experience__cards-item-info">
                 <h4 className={`experience__cards-item-name experience__cards-item-name--${theme}`}>
-                  {work.position}  
-                   <span className="experience__cards-item-tag--company"> {work.company}</span>
+                  {work.position} 
+                  {work.company && (
+                    work.companyUrl ? (
+                      <a
+                        href={work.companyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="experience__cards-item-tag--company"
+                      >
+                        {work.company}
+                      </a>
+                    ) : (
+                      <span className="experience__cards-item-tag--company">{work.company}</span>
+                    )
+                  )} 
                 </h4>
                 <span className={`experience__cards-item-tag experience__cards-item-tag--${theme}`}>{work.period}</span>
                 <p className={`experience__cards-item-description experience__cards-item-description--${theme} ${isExpanded ? 'expanded' : ''}`}>
@@ -183,7 +206,22 @@ export const EducationAndExperience: React.FC<EducationAndExperienceProps> = ({ 
                   )}
                 </p>
                 <div className="experience__cards-item-tags">
-                  {work.client && <span className={`experience__cards-item-tag experience__cards-item-tag--${theme}`}>Cliente: {work.client}</span>}
+                  {work.client && (
+                    work.clientUrl ? (
+                      <a
+                        href={work.clientUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`experience__cards-item-tag experience__cards-item-tag--${theme}`}
+                      >
+                        Cliente: {work.client}
+                      </a>
+                    ) : (
+                      <span className={`experience__cards-item-tag experience__cards-item-tag--${theme}`}>
+                        Cliente: {work.client}
+                      </span>
+                    )
+                  )}
                 </div>
               </div>
             </div>
