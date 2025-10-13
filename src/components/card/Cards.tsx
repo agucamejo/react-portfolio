@@ -4,6 +4,7 @@ import { Link } from '../../assets/images/Link'
 import './Cards.scss'
 import AOS from 'aos'
 import "aos/dist/aos.css";
+import { SectionTitle } from '../section-title/SectionTitle'
 
 interface Project {
   name: string
@@ -57,45 +58,48 @@ export const Cards: React.FC<CardsProps> = ({ theme, language }) => {
   }, [])
 
   return (
-    <div className="cards__container" id='projects'>
-      {projects.map((project, index) => (
-        <div
-          className={`cards__item ${index % 2 === 0 ? '' : 'cards__item--reverse'}`}
-          key={index}
-          data-aos="fade-up"     
-          data-aos-delay={index * 100}
-        >
-          {project.image && (
-            <img 
-              src={project.image.startsWith('http') ? project.image : `https://www.imghippo.com/i/${project.image}`} 
-              alt={project.name} 
-              className="cards__item-image" 
-            />
-          )}
-          <div className="cards__item-info">
-            <h4 className="cards__item-name">{project.name}</h4>
-            <span className={`cards__item-description cards__item-description--${theme}`}>{project.description[language] || project.description.es}</span>
-            <div className="cards__item-tags">
-              {project.tags.map((tag, i) => (
-                <span key={i} className="cards__item-tag">{tag}</span>
-              ))}
-            </div>
-            <div className="cards__item-links">
-              {project.repository && (
-                <a href={project.repository} target="_blank" rel="noopener noreferrer" title='Github'>
-                  <Github fill={theme === 'dark' ? '#FBFBFB' : '#1A1A1A'}/>
-                </a>
-              )}
-              {project.deploy && (
-                <a href={project.deploy} target="_blank" rel="noopener noreferrer" title='Deploy'>
-                  <Link stroke={theme === 'dark' ? '#FBFBFB' : '#1A1A1A'}/>
-                </a>
-              )}
+    <>
+      <SectionTitle title={language === 'es' ? 'Proyectos' : 'Projects'} theme={theme} />
+      <div className="cards__container" id='projects'>
+        {projects.map((project, index) => (
+          <div
+            className={`cards__item ${index % 2 === 0 ? '' : 'cards__item--reverse'}`}
+            key={index}
+            data-aos="fade-up"     
+            data-aos-delay={index * 100}
+          >
+            {project.image && (
+              <img 
+                src={project.image.startsWith('http') ? project.image : `https://www.imghippo.com/i/${project.image}`} 
+                alt={project.name} 
+                className="cards__item-image" 
+              />
+            )}
+            <div className="cards__item-info">
+              <h4 className="cards__item-name">{project.name}</h4>
+              <span className={`cards__item-description cards__item-description--${theme}`}>{project.description[language] || project.description.es}</span>
+              <div className="cards__item-tags">
+                {project.tags.map((tag, i) => (
+                  <span key={i} className="cards__item-tag">{tag}</span>
+                ))}
+              </div>
+              <div className="cards__item-links">
+                {project.repository && (
+                  <a href={project.repository} target="_blank" rel="noopener noreferrer" title='Github'>
+                    <Github fill={theme === 'dark' ? '#FBFBFB' : '#1A1A1A'}/>
+                  </a>
+                )}
+                {project.deploy && (
+                  <a href={project.deploy} target="_blank" rel="noopener noreferrer" title='Deploy'>
+                    <Link stroke={theme === 'dark' ? '#FBFBFB' : '#1A1A1A'}/>
+                  </a>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </>
   )
 }
 

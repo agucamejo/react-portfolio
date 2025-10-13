@@ -26,10 +26,10 @@
 
     &--light{
         color: var(--color-white);
-        background-color: var(--color-neutral-600);
+        background-color: var(--color-primary-700);
 
         &:hover{
-            background-color: var(--color-neutral-700);
+            background-color: var(--color-primary-800);
         }
     }
 }

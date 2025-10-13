@@ -8,12 +8,12 @@
 
   &--dark{
     color: var(--color-white);
-    background-color: var(--color-black);
+    // background-color: var(--color-black);
   }
 
   &--light{
     color: var(--color-neutral-900);
-    background-color: var(--color-neutral-200);
+    // background-color: var(--color-neutral-200);
   }
 
   @media screen and (max-width: 768px) {

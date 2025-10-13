@@ -1,0 +1,14 @@
+.section-title{
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-medium);
+    text-align: center;
+    margin-top: 20px;
+
+    &--dark{
+        color: var(--color-white);
+    }
+
+    &--light{
+        color: var(--color-secondary-600);
+    }
+}

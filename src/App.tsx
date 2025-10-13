@@ -6,6 +6,7 @@ import { Cards } from "./components/card/Cards"
 import ContactForm from "./components/contact-form/ContactForm"
 import Footer from "./components/footer/Footer"
 import { useEffect, useState } from "react"
+import { EducationAndExperience } from "./components/education-experience/EducationAndExperience"
 
 function App() {
   const [language, setLanguage] = useState<"en" | "es">(() => {
@@ -56,6 +57,7 @@ function App() {
       <div className="layout">
         <AboutMe theme={theme} language={language}/>
         <Cards theme={theme} language={language}/>
+        <EducationAndExperience theme={theme} language={language}/>
       </div>
         <AutoPlay />
       <div className="layout">

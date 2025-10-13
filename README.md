@@ -55,9 +55,13 @@ src/
 ├── components/          # Componentes reutilizables
 │   ├── header/
 │   ├── about/
+│   ├── button/
 │   ├── card/
 │   ├── contact-form/
+│   ├── education-experience/
 │   ├── footer/
+│   ├── navlink/
+│   ├── section-title/
 │   └── toggle/
 ├── App.tsx              # Punto principal de la aplicación
 └── main.tsx             # Render principal de React

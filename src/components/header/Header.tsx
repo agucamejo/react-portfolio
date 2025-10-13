@@ -87,7 +87,6 @@ export const Header: React.FC<HeaderProps> = ({ theme, language, setTheme, setLa
     <div className={`header header--${theme}`}>
       <div className='header__inner'>
         <header className="header__title">
-          {/* <h1>&lt; Agu Camejo /&gt;</h1> */}
           <div className={`header__theme-icon header__theme-icon--${theme}`} onClick={handleToggleTheme}>
             <Expand 
               duration={750} 

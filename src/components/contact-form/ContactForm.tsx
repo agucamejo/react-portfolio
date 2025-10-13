@@ -6,6 +6,7 @@ import { UserCircle } from "../../assets/images/User"
 import { RoundSubject } from "../../assets/images/Subject"
 import Swal from "sweetalert2"
 import Button from "../button/Button"
+import { SectionTitle } from "../section-title/SectionTitle"
 
 interface ContactFormProps {
   theme: string
@@ -15,6 +16,7 @@ interface ContactFormProps {
 export const ContactForm: React.FC<ContactFormProps> = ({ theme, language }) => {
   const translations = {
     es: {
+      sectionTitle: "Contacto",
       title: "Hablemos pronto",
       name: "Nombre",
       email: "Correo",
@@ -28,6 +30,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ theme, language }) => 
       errorText: "Hubo un problema al enviar tu mensaje. Por favor, inténtalo de nuevo más tarde."
     },
     en: {
+      sectionTitle: "Contact",
       title: "Let's talk soon",
       name: "Name",
       email: "Email",
@@ -69,9 +72,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ theme, language }) => 
       }
     )
       .then((res) => res.json())
-      .then((data) => {
-        console.log("Datos enviados exitosamente:", data);
-
+      .then(() => {
         Swal.fire({
           icon: 'success',
           title: t.successTitle,
@@ -85,9 +86,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ theme, language }) => 
           message: ""
         });
       })
-      .catch((error) => {
-        console.error("Error al enviar datos:", error);
-
+      .catch(() => {
         Swal.fire({
           icon: 'error',
           title: t.errorTitle,
@@ -97,74 +96,77 @@ export const ContactForm: React.FC<ContactFormProps> = ({ theme, language }) => 
   }
 
   return (
-    <div className={`contact-container contact-container--${theme}`} id="contact">
-      <div className={`contact-image contact-image--${theme}`}>
-        <img src={handsForm} alt="handshake" />
-      </div>
-      <form className="contact-form" autoComplete="on" onSubmit={(e) => Submit(e)}>
-        <h2>{t.title}</h2>
-        <div className="form-group">
-          <div className="form-item">
-            <label htmlFor="name" className={`label label--${theme}`}>{t.name}</label>
+    <>
+      <SectionTitle title={t.sectionTitle} theme={theme} />
+      <div className={`contact-container contact-container--${theme}`} id="contact">
+        <div className={`contact-image contact-image--${theme}`}>
+          <img src={handsForm} alt="handshake" />
+        </div>
+        <form className="contact-form" autoComplete="on" onSubmit={(e) => Submit(e)}>
+          <h2>{t.title}</h2>
+          <div className="form-group">
+            <div className="form-item">
+              <label htmlFor="name" className={`label label--${theme}`}>{t.name}</label>
+              <div className={`input-container input-container--${theme}`}>
+                <UserCircle />
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  className={`input input--${theme}`}
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+            <div className="form-item">
+              <label htmlFor="email" className={`label label--${theme}`}>{t.email}</label>
+              <div className={`input-container input-container--${theme}`}>
+                <At />
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    className={`input input--${theme}`}
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                />
+              </div>
+            </div>
+          </div>
+          <div className="form-item full-width">
+            <label htmlFor="subject" className={`label label--${theme}`}>{t.subject}</label>
             <div className={`input-container input-container--${theme}`}>
-              <UserCircle />
+              <RoundSubject />
               <input
                 type="text"
-                id="name"
-                name="name"
+                id="subject"
+                name="subject"
                 className={`input input--${theme}`}
-                value={formData.name}
+                value={formData.subject}
                 onChange={handleChange}
                 required
               />
             </div>
           </div>
-          <div className="form-item">
-            <label htmlFor="email" className={`label label--${theme}`}>{t.email}</label>
-            <div className={`input-container input-container--${theme}`}>
-              <At />
-              <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className={`input input--${theme}`}
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-              />
-            </div>
-          </div>
-        </div>
-        <div className="form-item full-width">
-          <label htmlFor="subject" className={`label label--${theme}`}>{t.subject}</label>
-          <div className={`input-container input-container--${theme}`}>
-            <RoundSubject />
-            <input
-              type="text"
-              id="subject"
-              name="subject"
-              className={`input input--${theme}`}
-              value={formData.subject}
+          <div className="form-item full-width">
+            <label htmlFor="message" className={`label label--${theme}`}>{t.message}</label>
+            <textarea
+              id="message"
+              name="message"
+              className={`textarea textarea--${theme}`}
+              placeholder={t.placeholder}
+              value={formData.message}
               onChange={handleChange}
               required
             />
           </div>
-        </div>
-        <div className="form-item full-width">
-          <label htmlFor="message" className={`label label--${theme}`}>{t.message}</label>
-          <textarea
-            id="message"
-            name="message"
-            className={`textarea textarea--${theme}`}
-            placeholder={t.placeholder}
-            value={formData.message}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <Button title={t.submit} type="submit" theme={theme}></Button>
-      </form>
-    </div>
+          <Button title={t.submit} type="submit" theme={theme}></Button>
+        </form>
+      </div>
+    </>
   )
 }
 

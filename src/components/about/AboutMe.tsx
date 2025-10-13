@@ -4,7 +4,8 @@ import aboutImage from '../../assets/images/about.svg';
 import './AboutMe.scss'
 import { Github } from "../../assets/images/Github.tsx";
 import { Linkedin } from "../../assets/images/Linkedin.tsx";
-import resumePDF from '../../assets/files/Agustin Camejo - CV - Spanish.pdf'
+import resumePDF_ES from '../../assets/files/Agustin Camejo - CV - Spanish.pdf'
+import resumePDF_EN from '../../assets/files/Agustin Camejo - CV - Spanish.pdf'
 
 interface AboutMeProps {
   theme: string
@@ -27,6 +28,20 @@ export const AboutMe: React.FC<AboutMeProps> = ({ theme, language }) => {
 
   const t = translations[language as "es" | "en"]
 
+  const resumeFile = language === "es" ? resumePDF_ES : resumePDF_EN
+  const resumeFileName = language === "es" 
+    ? "Agustin Camejo - Curriculum Vitae.pdf" 
+    : "Agustin Camejo - Resume.pdf"
+
+  const handleDownload = () => {
+    const link = document.createElement('a')
+    link.href = resumeFile
+    link.download = resumeFileName
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
   return (
     <>
       <div className="about" id="about">
@@ -34,9 +49,7 @@ export const AboutMe: React.FC<AboutMeProps> = ({ theme, language }) => {
           <span>{t.hello} </span>
           <span className={`about__text-name`}>Agustín Camejo</span>
           <span>{t.role}</span>
-          <a href={resumePDF} download="Agustin Camejo-CV.pdf" title={t.resume}>
-            <Button title={t.resume} icon={<FilePdf />} theme={theme}/>
-          </a>
+          <Button title={t.resume} icon={<FilePdf />} theme={theme} onClick={handleDownload}/>
         </div>
         <img src={aboutImage} alt="Animated picture of a dev" title="Developer working" className="about__img"/>
       </div>
