@@ -3,14 +3,14 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    height: 100dvh;
+    height: calc(100vh - 100px);
 
     @media screen and (max-width: 900px) {
         flex-direction: column;
         text-align: center;
         justify-content: space-evenly;
         gap: 60px;
-        height: 100dvh;
+        height: calc(100vh - 115px);
     }
 
     &__text{
