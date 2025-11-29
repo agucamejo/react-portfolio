@@ -7,6 +7,7 @@ import ContactForm from "./components/contact-form/ContactForm"
 import Footer from "./components/footer/Footer"
 import { useEffect, useState } from "react"
 import { EducationAndExperience } from "./components/education-experience/EducationAndExperience"
+import { WhatsAppButton } from "./components/whatsapp-button/WhatsAppButton"
 
 function App() {
   const [language, setLanguage] = useState<"en" | "es">(() => {
@@ -64,6 +65,7 @@ function App() {
         <ContactForm theme={theme} language={language}/>
         <Footer theme={theme} language={language}/>
       </div>
+      <WhatsAppButton theme={theme} language={language} />
     </>
   )
 }

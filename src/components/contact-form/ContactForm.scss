@@ -8,12 +8,10 @@
 
   &--dark{
     color: var(--color-white);
-    // background-color: var(--color-black);
   }
 
   &--light{
     color: var(--color-neutral-900);
-    // background-color: var(--color-neutral-200);
   }
 
   @media screen and (max-width: 768px) {
@@ -150,8 +148,12 @@
   width: 100%;
 }
 
-input:-webkit-autofill {
+input:-webkit-autofill.input--dark {
   -webkit-text-fill-color: var(--color-white) !important;
+}
+
+input:-webkit-autofill.input--light {
+  -webkit-text-fill-color: var(--color-neutral-900) !important;
 }
 
 .button {
