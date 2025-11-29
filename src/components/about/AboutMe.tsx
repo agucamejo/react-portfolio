@@ -4,8 +4,8 @@ import aboutImage from '../../assets/images/about.svg';
 import './AboutMe.scss'
 import { Github } from "../../assets/images/Github.tsx";
 import { Linkedin } from "../../assets/images/Linkedin.tsx";
-import resumePDF_ES from '../../assets/files/Agustin Camejo - CV - Spanish.pdf'
-import resumePDF_EN from '../../assets/files/Agustin Camejo - CV - Spanish.pdf'
+import resumePDF_ES from '../../../public/Agustin Camejo - CV - Spanish.pdf'
+import resumePDF_EN from '../../../public/Agustin Camejo - CV - English.pdf'
 
 interface AboutMeProps {
   theme: string
