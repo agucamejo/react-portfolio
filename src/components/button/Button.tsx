@@ -10,7 +10,7 @@ interface ButtonProps {
 
 const Button: React.FC<ButtonProps> = ({ title, icon, theme = 'dark', type = 'button', onClick }) => {
   return (
-    <button type={type} className={`button button--${theme}`} onClick={() => onClick}>
+    <button type={type} className={`button button--${theme}`} onClick={onClick}>
       {title}
       {icon && <span>{icon}</span>} 
     </button>
