@@ -65,7 +65,7 @@ function App() {
         <ContactForm theme={theme} language={language}/>
         <Footer theme={theme} language={language}/>
       </div>
-      <WhatsAppButton theme={theme} language={language} />
+      <WhatsAppButton language={language} />
     </>
   )
 }
