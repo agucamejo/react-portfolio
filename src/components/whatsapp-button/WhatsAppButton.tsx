@@ -18,7 +18,7 @@ export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ theme = 'dark', 
 
     return(
         <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" title='WhatsApp' className='whatsapp-button'>
-            <Whatsapp fill={theme === 'dark' ? '#FBFBFB' : '#1A1A1A'} />
+            <Whatsapp fill={theme === 'light' ? '#FBFBFB' : '#1A1A1A'} />
         </a>
     );
 }
