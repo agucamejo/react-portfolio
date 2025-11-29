@@ -4,8 +4,6 @@ import aboutImage from '../../assets/images/about.svg';
 import './AboutMe.scss'
 import { Github } from "../../assets/images/Github.tsx";
 import { Linkedin } from "../../assets/images/Linkedin.tsx";
-import resumePDF_ES from '../../../public/Agustin Camejo - CV - Spanish.pdf'
-import resumePDF_EN from '../../../public/Agustin Camejo - CV - English.pdf'
 
 interface AboutMeProps {
   theme: string
@@ -28,7 +26,7 @@ export const AboutMe: React.FC<AboutMeProps> = ({ theme, language }) => {
 
   const t = translations[language as "es" | "en"]
 
-  const resumeFile = language === "es" ? resumePDF_ES : resumePDF_EN
+  const resumeFile = language === "es" ? '/cv-es.pdf' : '/cv-en.pdf'
   const resumeFileName = language === "es" 
     ? "Agustin Camejo - Curriculum Vitae.pdf" 
     : "Agustin Camejo - Resume.pdf"
