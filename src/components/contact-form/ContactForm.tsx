@@ -89,8 +89,8 @@ export const ContactForm: React.FC<ContactFormProps> = ({ theme, language }) => 
         message: ""
       })
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
+      console.log(error)
       Swal.fire({
         icon: "error",
         title: t.errorTitle,
@@ -106,7 +106,15 @@ export const ContactForm: React.FC<ContactFormProps> = ({ theme, language }) => 
         <div className={`contact-image contact-image--${theme}`}>
           <img src={handsForm} alt="handshake" />
         </div>
-        <form method="POST" data-netlify-honeypot="bot-field" className="contact-form" autoComplete="on" onSubmit={(e) => Submit(e)} data-netlify="true">
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          className="contact-form"
+          autoComplete="on"
+          onSubmit={Submit}
+        >
           <input type="hidden" name="form-name" value="contact" />
           <input type="hidden" name="bot-field" />
           <h2>{t.title}</h2>
