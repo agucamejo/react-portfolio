@@ -60,39 +60,37 @@ export const ContactForm: React.FC<ContactFormProps> = ({ theme, language }) => 
   }
 
   async function Submit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault(); 
+    event.preventDefault()
 
-    const formEle = event.currentTarget
-    const formDatab = new FormData(formEle)
-    await fetch(
-      "https://script.google.com/macros/s/AKfycbwaku7H1-YLK7zkNKh8wbH3NoaQy6UH01sr6XNQ8lD92H7swIB8Iwdql85__lryTZVJ/exec",
-      {
+    const form = event.target as HTMLFormElement
+    const formData = new FormData(form)
+
+    try {
+      await fetch("/", {
         method: "POST",
-        body: formDatab
-      }
-    )
-      .then((res) => res.json())
-      .then(() => {
-        Swal.fire({
-          icon: 'success',
-          title: t.successTitle,
-          text: t.successText,
-        });
-
-        setFormData({
-          name: "",
-          email: "",
-          subject: "",
-          message: ""
-        });
+        body: formData
       })
-      .catch(() => {
-        Swal.fire({
-          icon: 'error',
-          title: t.errorTitle,
-          text: t.errorText,
-        });
-      });
+
+      Swal.fire({
+        icon: "success",
+        title: t.successTitle,
+        text: t.successText
+      })
+
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: ""
+      })
+
+    } catch {
+      Swal.fire({
+        icon: "error",
+        title: t.errorTitle,
+        text: t.errorText
+      })
+    }
   }
 
   return (
@@ -102,7 +100,9 @@ export const ContactForm: React.FC<ContactFormProps> = ({ theme, language }) => 
         <div className={`contact-image contact-image--${theme}`}>
           <img src={handsForm} alt="handshake" />
         </div>
-        <form className="contact-form" autoComplete="on" onSubmit={(e) => Submit(e)}>
+        <form method="POST" data-netlify-honeypot="bot-field" className="contact-form" autoComplete="on" onSubmit={(e) => Submit(e)} data-netlify="true">
+          <input type="hidden" name="form-name" value="contact" />
+          <input type="hidden" name="bot-field" />
           <h2>{t.title}</h2>
           <div className="form-group">
             <div className="form-item">
