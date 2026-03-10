@@ -63,13 +63,18 @@ export const ContactForm: React.FC<ContactFormProps> = ({ theme, language }) => 
     event.preventDefault()
 
     const form = event.target as HTMLFormElement
-    const formData = new FormData(form)
+    const data = new FormData(form)
 
     try {
-      await fetch("/", {
+      const response = await fetch("/", {
         method: "POST",
-        body: formData
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(data as unknown as Record<string, string>).toString()
       })
+
+      if (!response.ok) {
+        throw new Error(`Server responded with ${response.status}`)
+      }
 
       Swal.fire({
         icon: "success",
@@ -84,7 +89,8 @@ export const ContactForm: React.FC<ContactFormProps> = ({ theme, language }) => 
         message: ""
       })
 
-    } catch {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
       Swal.fire({
         icon: "error",
         title: t.errorTitle,
