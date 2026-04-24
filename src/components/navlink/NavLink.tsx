@@ -25,13 +25,14 @@ const NavLink: React.FC<NavLinkProps> = ({ label, isActive, onClick, navigateTo 
   }
 
   return (
-    <div
+    <a
+      href={navigateTo}
       className={`navlink ${isActive ? 'navlink--active' : ''}`}
       onClick={handleSmoothScroll}
     >
       <span className="navlink__label">{label}</span>
       {isActive && <div className="navlink__line"></div>}
-    </div>
+    </a>
   )
 }
 

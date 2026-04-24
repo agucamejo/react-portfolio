@@ -5,6 +5,7 @@ import './Cards.scss'
 import AOS from 'aos'
 import "aos/dist/aos.css";
 import { SectionTitle } from '../section-title/SectionTitle'
+import { ImageCarousel } from './ImageCarousel'
 
 interface Project {
   name: string
@@ -15,7 +16,7 @@ interface Project {
   tags: string[]
   repository: string
   deploy: string
-  image: string
+  images: string[]
 }
 
 interface CardsProps {
@@ -35,6 +36,13 @@ export const Cards: React.FC<CardsProps> = ({ theme, language }) => {
   }, []);
 
   useEffect(() => {
+    setTimeout(() => {
+      AOS.refreshHard();
+      window.dispatchEvent(new Event('scroll'));
+    }, 100);
+  }, [theme, language, projects]);
+
+  useEffect(() => {
     async function fetchData() {
       const csv = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vRo_f5cAA9iImppAllrQOy8kitjl84fW79i2eH4j6nYdXNL0a7sVn5IXn8hs988WL2D15QuGB3QnDPw/pub?gid=0&single=true&output=csv')
         .then((res) => res.text())
@@ -46,9 +54,9 @@ export const Cards: React.FC<CardsProps> = ({ theme, language }) => {
           const [name, description_es, description_en, tags, repository, deploy, image] = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
 
           const formattedTags = tags ? tags.replace(/^"|"$/g, '').split(',').map(tag => tag.trim()) : []
-          const formattedImage = image ? image.replace(/^"|"$/g, '').trim() : ''
+          const formattedImages = image ? image.replace(/^"|"$/g, '').split(',').map(img => img.trim()) : []
 
-          return { name, description: { es: description_es, en: description_en }, tags: formattedTags, repository, deploy, image: formattedImage }
+          return { name, description: { es: description_es, en: description_en }, tags: formattedTags, repository, deploy, images: formattedImages }
         })
 
       setProjects(projects)
@@ -68,15 +76,11 @@ export const Cards: React.FC<CardsProps> = ({ theme, language }) => {
             data-aos="fade-up"     
             data-aos-delay={index * 100}
           >
-            {project.image && (
-              <img 
-                src={project.image.startsWith('http') ? project.image : `https://www.imghippo.com/i/${project.image}`} 
-                alt={project.name} 
-                className="cards__item-image" 
-              />
+            {project.images && project.images.length > 0 && (
+              <ImageCarousel images={project.images} alt={project.name} className="cards__item-image" />
             )}
             <div className="cards__item-info">
-              <h4 className="cards__item-name">{project.name}</h4>
+              <h4 className={`cards__item-name cards__item-name--${theme}`}>{project.name}</h4>
               <span className={`cards__item-description cards__item-description--${theme}`}>{project.description[language] || project.description.es}</span>
               <div className="cards__item-tags">
                 {project.tags.map((tag, i) => (

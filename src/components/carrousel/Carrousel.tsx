@@ -13,58 +13,48 @@ function AutoPlay() {
     "Vue.JS",
     "React",
     "Angular",
+    "Next.js",
+    "Supabase",
+    "Firebase",
+    "Google Cloud",
     "API Rest",
     "Figma",
     "SaSS",
     "Flutter",
     "Kotlin",
-    "JavaScript",
-    "TypeScript",
-    "Vue.JS",
-    "React",
-    "Angular",
-    "API Rest",
-    "Figma",
-    "SaSS",
-    "Flutter",
-    "Kotlin"
   ];
 
   const settings = {
     infinite: true,
     autoplay: true,
-    speed: 2000,
-    autoplaySpeed: 2000,
+    speed: 3000,
+    autoplaySpeed: 0,
     cssEase: "linear",
-    slidesToShow: 4,
+    slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
     variableWidth: true,
-    beforeChange: (next: number) => {
-      if (next === sliderItems.length - 1) {
-        setTimeout(() => sliderRef.current?.slickGoTo(0), 1000)
-      }
-    },
+    pauseOnHover: false,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
-          variableWidth: false
+          slidesToShow: 1,
+          variableWidth: true
         }
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2,
-          variableWidth: false
+          slidesToShow: 1,
+          variableWidth: true
         }
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          variableWidth: false
+          variableWidth: true
         }
       }
     ]

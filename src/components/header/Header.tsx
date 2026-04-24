@@ -87,14 +87,14 @@ export const Header: React.FC<HeaderProps> = ({ theme, language, setTheme, setLa
     <div className={`header header--${theme}`}>
       <div className='header__inner'>
         <header className="header__title">
-          <div className={`header__theme-icon header__theme-icon--${theme}`} onClick={handleToggleTheme}>
+          <button aria-label="Toggle theme" className={`header__theme-icon header__theme-icon--${theme}`} onClick={handleToggleTheme}>
             <Expand 
               duration={750} 
               placeholder={undefined} 
               onPointerEnterCapture={undefined} 
               onPointerLeaveCapture={undefined} 
             />
-          </div>
+          </button>
           <div className="header__hamburger">
             <Hamburger toggled={isMenuOpen} toggle={setIsMenuOpen} size={18}/>
           </div>

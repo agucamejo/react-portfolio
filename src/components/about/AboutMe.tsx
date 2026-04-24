@@ -45,7 +45,7 @@ export const AboutMe: React.FC<AboutMeProps> = ({ theme, language }) => {
       <div className="about" id="about">
         <div className={`about__text about__text--${theme}`}>
           <span>{t.hello} </span>
-          <span className={`about__text-name`}>Agustín Camejo</span>
+          <span className={`about__text-name about__text-name--${theme}`}>Agustín Camejo</span>
           <span>{t.role}</span>
           <Button title={t.resume} icon={<FilePdf />} theme={theme} onClick={handleDownload}/>
         </div>

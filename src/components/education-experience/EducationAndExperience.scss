@@ -91,6 +91,16 @@
     cursor: default;
     width: 100%;
 
+    &:last-child:nth-child(even) {
+      grid-column: 1 / -1;
+      width: calc(50% - 16px);
+      justify-self: center;
+
+      @media screen and (max-width: 950px) {
+        width: 100%;
+      }
+    }
+
     &--dark{
       background-color: var(--color-neutral-1000);
     }
