@@ -8,7 +8,7 @@ interface NavLinkProps {
 }
 
 const NavLink: React.FC<NavLinkProps> = ({ label, isActive, onClick, navigateTo }) => {
-  const handleSmoothScroll = (event: React.MouseEvent<HTMLDivElement>) => {
+  const handleSmoothScroll = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
 
     const targetId = navigateTo.startsWith("#") ? navigateTo.slice(1) : null
