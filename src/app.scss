@@ -1,8 +1,12 @@
-.layout{
+.layout {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 60px;
+
+  @media screen and (max-width: 768px) {
+    gap: 80px;
+  }
 
   @media screen and (max-width: 500px) {
     max-width: 100%;
@@ -24,9 +28,11 @@
 
   #about,
   #projects,
-  #education-experience,
+  #workflow,
+  #services,
+  #testimonials,
+  #experience,
   #contact {
-    scroll-margin-top: 180px;
+    scroll-margin-top: 230px;
   }
-
 }

@@ -17,6 +17,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ theme, language }) => 
   const translations = {
     es: {
       sectionTitle: "Contacto",
+      sectionSubtitle: "Contame tu idea, lo demás corre por mi cuenta",
       title: "Hablemos pronto",
       name: "Nombre",
       email: "Correo",
@@ -31,6 +32,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ theme, language }) => 
     },
     en: {
       sectionTitle: "Contact",
+      sectionSubtitle: "Tell me your idea, I'll handle the rest",
       title: "Let's talk soon",
       name: "Name",
       email: "Email",
@@ -101,7 +103,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ theme, language }) => 
 
   return (
     <>
-      <SectionTitle title={t.sectionTitle} theme={theme} />
+      <SectionTitle title={t.sectionTitle} subtitle={t.sectionSubtitle} theme={theme} />
       <div className={`contact-container contact-container--${theme}`} id="contact">
         <div className={`contact-image contact-image--${theme}`}>
           <img src={handsForm} alt="handshake" />
@@ -139,13 +141,13 @@ export const ContactForm: React.FC<ContactFormProps> = ({ theme, language }) => 
               <div className={`input-container input-container--${theme}`}>
                 <At />
                 <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    className={`input input--${theme}`}
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
+                  type="email"
+                  id="email"
+                  name="email"
+                  className={`input input--${theme}`}
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
                 />
               </div>
             </div>

@@ -1,0 +1,97 @@
+.testimonials {
+  max-width: 980px;
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacer-xl);
+    margin-bottom: 80px;
+
+    @media screen and (max-width: 900px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media screen and (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__card {
+    padding: var(--spacer-xl);
+    border-radius: var(--border-radius-2xl) 0 var(--border-radius-2xl) var(--border-radius-2xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    box-shadow: var(--color-secondary-600) 0px 8px 50px;
+
+    &-stars {
+      color: #FFB800;
+      font-size: var(--font-size-xl);
+      margin-bottom: var(--spacer-md);
+      text-align: right;
+    }
+
+    &-quote {
+      font-size: var(--font-size-md);
+      line-height: var(--line-height-m);
+      font-style: italic;
+      margin-bottom: var(--spacer-xl);
+      flex-grow: 1;
+    }
+
+    &-author {
+      display: flex;
+      align-items: center;
+      gap: var(--spacer-md);
+    }
+
+    &-avatar {
+      width: 48px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--color-neutral-300);
+      object-fit: cover;
+    }
+
+    &-name {
+      font-size: var(--font-size-md);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--spacer-2xs);
+    }
+
+    &-role {
+      font-size: var(--font-size-sm);
+    }
+
+    &--light {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-neutral-200);
+      color: var(--color-black);
+
+      .testimonials__card-role {
+        color: var(--color-neutral-600);
+      }
+    }
+
+    &--dark {
+      background-color: var(--color-secondary-1000);
+      border: 1px solid var(--color-secondary-800);
+      color: var(--color-white);
+
+      .testimonials__card-role {
+        color: var(--color-neutral-400);
+      }
+    }
+
+    &--active {
+      background-color: var(--color-primary-600) !important;
+      color: var(--color-white) !important;
+      border-color: var(--color-primary-600) !important;
+
+      .testimonials__card-role {
+        color: rgba(255, 255, 255, 0.8) !important;
+      }
+    }
+  }
+}

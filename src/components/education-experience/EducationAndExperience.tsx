@@ -30,6 +30,7 @@ export const EducationAndExperience: React.FC<EducationAndExperienceProps> = ({ 
   const translations = {
     es: {
       sectionTitle: "Educación y experiencia",
+      sectionSubtitle: "El camino que me trajo hasta acá",
       educationCard: {
         title: "Educación",
         educations: [
@@ -94,6 +95,7 @@ export const EducationAndExperience: React.FC<EducationAndExperienceProps> = ({ 
     },
     en: {
       sectionTitle: "Education and experience",
+      sectionSubtitle: "The path that brought me here",
       educationCard: {
         title: "Education",
         educations: [
@@ -161,99 +163,101 @@ export const EducationAndExperience: React.FC<EducationAndExperienceProps> = ({ 
   const t = translations[language as "es" | "en"]
 
   return (
-    <div className={`experience experience--${theme}`} id="experience">
-      <SectionTitle title={t.sectionTitle} theme={theme} />
+    <>
+      <SectionTitle title={t.sectionTitle} subtitle={t.sectionSubtitle} theme={theme} />
+      <div className={`experience experience--${theme}`} id="experience">
 
-      <div className="experience__cards">
-        <h4 className={`experience__cards-title experience__cards-title--education experience__cards-title--${theme}`}><Study stroke={theme === 'dark' ? '#FBFBFB' : '#1A1A1A'} />{t.educationCard.title}</h4>
-        {t.educationCard.educations.map((edu, index) => (
-          <div
-            className={`experience__cards-item experience__cards-item--${theme}`}
-            key={`edu-${index}`}
-            data-aos="fade-up"
-            data-aos-delay={(Math.floor(index / 2)) * 200}
-          >
-            <div className="experience__cards-item-info">
-              <h4 className={`experience__cards-item-name experience__cards-item-name--${theme}`}>{edu.degree}</h4>
-              <span className={`experience__cards-item-tag experience__cards-item-tag--${theme}`}>{edu.period}</span>
-              <span className={`experience__cards-item-description experience__cards-item-description--${theme}`}>
-                {edu.institution}
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="experience__cards">
-        <h4 className={`experience__cards-title experience__cards-title--${theme}`}><Work fill={theme === 'dark' ? '#FBFBFB' : '#1A1A1A'} />{t.workCard.title}</h4>
-        {t.workCard.works.map((work, index) => {
-          const isExpanded = expandedCards[index] || false
-          const showMore = work.description.length > 180
-
-          return (
+        <div className="experience__cards">
+          <h4 className={`experience__cards-title experience__cards-title--education experience__cards-title--${theme}`}><Study stroke={theme === 'dark' ? '#FBFBFB' : '#1A1A1A'} />{t.educationCard.title}</h4>
+          {t.educationCard.educations.map((edu, index) => (
             <div
               className={`experience__cards-item experience__cards-item--${theme}`}
-              key={`work-${index}`}
+              key={`edu-${index}`}
               data-aos="fade-up"
               data-aos-delay={(Math.floor(index / 2)) * 200}
             >
               <div className="experience__cards-item-info">
-                <h4 className={`experience__cards-item-name experience__cards-item-name--${theme}`}>
-                  {work.position}
-                  {work.company && (
-                    work.companyUrl ? (
-                      <a
-                        href={work.companyUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="experience__cards-item-tag--company"
-                      >
-                        {work.company}
-                      </a>
-                    ) : (
-                      <span className="experience__cards-item-tag--company">{work.company}</span>
-                    )
-                  )}
-                </h4>
-                <span className={`experience__cards-item-tag experience__cards-item-tag--${theme}`}>{work.period}</span>
-                <p className={`experience__cards-item-description experience__cards-item-description--${theme} ${isExpanded ? 'expanded' : ''}`}>
-                  {isExpanded
-                    ? work.description
-                    : work.description.slice(0, 180) + (showMore ? '...' : '')}
-                  {showMore && (
-                    <button
-                      className="experience__cards-item-more-inline"
-                      onClick={() => toggleExpand(index)}
-                    >
-                      {isExpanded
-                        ? language === 'es' ? 'Ver menos' : 'See less'
-                        : language === 'es' ? 'Leer más' : 'Read more'}
-                    </button>
-                  )}
-                </p>
-                <div className="experience__cards-item-tags">
-                  {work.client && (
-                    work.clientUrl ? (
-                      <a
-                        href={work.clientUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`experience__cards-item-tag experience__cards-item-tag--${theme}`}
-                      >
-                        Cliente: {work.client}
-                      </a>
-                    ) : (
-                      <span className={`experience__cards-item-tag experience__cards-item-tag--${theme}`}>
-                        Cliente: {work.client}
-                      </span>
-                    )
-                  )}
-                </div>
+                <h4 className={`experience__cards-item-name experience__cards-item-name--${theme}`}>{edu.degree}</h4>
+                <span className={`experience__cards-item-tag experience__cards-item-tag--${theme}`}>{edu.period}</span>
+                <span className={`experience__cards-item-description experience__cards-item-description--${theme}`}>
+                  {edu.institution}
+                </span>
               </div>
             </div>
-          )
-        })}
+          ))}
+        </div>
+
+        <div className="experience__cards">
+          <h4 className={`experience__cards-title experience__cards-title--${theme}`}><Work fill={theme === 'dark' ? '#FBFBFB' : '#1A1A1A'} />{t.workCard.title}</h4>
+          {t.workCard.works.map((work, index) => {
+            const isExpanded = expandedCards[index] || false
+            const showMore = work.description.length > 180
+
+            return (
+              <div
+                className={`experience__cards-item experience__cards-item--${theme}`}
+                key={`work-${index}`}
+                data-aos="fade-up"
+                data-aos-delay={(Math.floor(index / 2)) * 200}
+              >
+                <div className="experience__cards-item-info">
+                  <h4 className={`experience__cards-item-name experience__cards-item-name--${theme}`}>
+                    {work.position}
+                    {work.company && (
+                      work.companyUrl ? (
+                        <a
+                          href={work.companyUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="experience__cards-item-tag--company"
+                        >
+                          {work.company}
+                        </a>
+                      ) : (
+                        <span className="experience__cards-item-tag--company">{work.company}</span>
+                      )
+                    )}
+                  </h4>
+                  <span className={`experience__cards-item-tag experience__cards-item-tag--${theme}`}>{work.period}</span>
+                  <p className={`experience__cards-item-description experience__cards-item-description--${theme} ${isExpanded ? 'expanded' : ''}`}>
+                    {isExpanded
+                      ? work.description
+                      : work.description.slice(0, 180) + (showMore ? '...' : '')}
+                    {showMore && (
+                      <button
+                        className="experience__cards-item-more-inline"
+                        onClick={() => toggleExpand(index)}
+                      >
+                        {isExpanded
+                          ? language === 'es' ? 'Ver menos' : 'See less'
+                          : language === 'es' ? 'Leer más' : 'Read more'}
+                      </button>
+                    )}
+                  </p>
+                  <div className="experience__cards-item-tags">
+                    {work.client && (
+                      work.clientUrl ? (
+                        <a
+                          href={work.clientUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`experience__cards-item-tag experience__cards-item-tag--${theme}`}
+                        >
+                          Cliente: {work.client}
+                        </a>
+                      ) : (
+                        <span className={`experience__cards-item-tag experience__cards-item-tag--${theme}`}>
+                          Cliente: {work.client}
+                        </span>
+                      )
+                    )}
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
       </div>
-    </div>
+    </>
   )
 }

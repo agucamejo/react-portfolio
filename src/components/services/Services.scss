@@ -1,0 +1,182 @@
+.services {
+  max-width: 980px;
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacer-none);
+    border-radius: var(--border-radius-4xl);
+    overflow: hidden;
+    margin-bottom: 90px;
+    box-shadow: var(--color-secondary-600) 0px 8px 50px;
+
+    @media screen and (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media screen and (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+
+    &--light {
+      background-color: var(--color-secondary-50);
+    }
+
+    &--dark {
+      background-color: var(--color-secondary-1000);
+    }
+  }
+
+  &__card {
+    padding: var(--padding-large);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    position: relative;
+
+    &:not(:nth-child(4n)) {
+      &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 10%;
+        height: 80%;
+        width: 1px;
+        background-color: var(--color-neutral-700);
+      }
+    }
+
+    @media screen and (max-width: 1024px) {
+      &:nth-child(odd)::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 10%;
+        height: 80%;
+        width: 1px;
+        background-color: var(--color-neutral-700);
+      }
+
+      &:nth-child(even)::after {
+        display: none;
+      }
+
+      &:nth-child(3),
+      &:nth-child(4) {
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 10%;
+          width: 80%;
+          height: 1px;
+          background-color: var(--color-neutral-700);
+        }
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      &::after {
+        display: none;
+      }
+
+      &:not(:last-child)::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 10%;
+        width: 80%;
+        height: 1px;
+        background-color: var(--color-neutral-700);
+      }
+    }
+
+    &-icon {
+      font-size: var(--font-size-3xl);
+      margin-bottom: var(--spacer-md);
+    }
+
+    &-title {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--spacer-sm);
+    }
+
+    &-description {
+      font-size: var(--font-size-sm);
+      line-height: var(--line-height-m);
+      flex-grow: 1;
+    }
+
+    &--light {
+      color: var(--color-black);
+
+      .services__card-description {
+        color: var(--color-neutral-600);
+      }
+    }
+
+    &--dark {
+      color: var(--color-white);
+
+      .services__card-description {
+        color: var(--color-neutral-400);
+      }
+    }
+
+    &:first-child:hover {
+      border-radius: var(--border-radius-4xl) 0 0 var(--border-radius-4xl);
+    }
+
+    &:last-child:hover {
+      border-radius: 0 var(--border-radius-4xl) var(--border-radius-4xl) 0;
+    }
+
+    &:not(:first-child):not(:last-child):hover {
+      border-radius: 0;
+    }
+
+    @media screen and (max-width: 1024px) {
+      &:nth-child(1):hover {
+        border-radius: var(--border-radius-4xl) 0 0 0;
+      }
+
+      &:nth-child(2):hover {
+        border-radius: 0 var(--border-radius-4xl) 0 0;
+      }
+
+      &:nth-child(3):hover {
+        border-radius: 0 0 0 var(--border-radius-4xl);
+      }
+
+      &:nth-child(4):hover {
+        border-radius: 0 0 var(--border-radius-4xl) 0;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      &:first-child:hover {
+        border-radius: var(--border-radius-4xl) var(--border-radius-4xl) 0 0;
+      }
+
+      &:last-child:hover {
+        border-radius: 0 0 var(--border-radius-4xl) var(--border-radius-4xl);
+      }
+
+      &:not(:first-child):not(:last-child):hover {
+        border-radius: 0;
+      }
+    }
+
+    &:hover {
+      background-color: var(--color-primary-600) !important;
+      color: var(--color-white) !important;
+
+      .services__card-description {
+        color: rgba(255, 255, 255, 0.8) !important;
+      }
+    }
+  }
+}

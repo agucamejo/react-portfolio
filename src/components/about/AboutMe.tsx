@@ -8,18 +8,21 @@ import { Linkedin } from "../../assets/images/Linkedin.tsx";
 interface AboutMeProps {
   theme: string
   language: string
+  profile: 'particular' | 'empresa'
 }
 
-export const AboutMe: React.FC<AboutMeProps> = ({ theme, language }) => {
+export const AboutMe: React.FC<AboutMeProps> = ({ theme, language, profile }) => {
   const translations = {
     es: {
       hello: "Hola, mi nombre es",
       role: "Soy desarrollador frontend.",
+      roleParticular: "Creo sitios web que ayudan a tu negocio a crecer.",
       resume: "Currículum Vitae"
     },
     en: {
       hello: "Hello, my name is",
       role: "I'm a frontend developer.",
+      roleParticular: "I build websites that help your business grow.",
       resume: "Resume"
     }
   }
@@ -46,8 +49,10 @@ export const AboutMe: React.FC<AboutMeProps> = ({ theme, language }) => {
         <div className={`about__text about__text--${theme}`}>
           <span>{t.hello} </span>
           <span className={`about__text-name about__text-name--${theme}`}>Agustín Camejo</span>
-          <span>{t.role}</span>
-          <Button title={t.resume} icon={<FilePdf />} theme={theme} onClick={handleDownload}/>
+          <span>{profile === 'particular' ? t.roleParticular : t.role}</span>
+          {profile !== 'particular' && (
+            <Button title={t.resume} icon={<FilePdf />} theme={theme} onClick={handleDownload}/>
+          )}
         </div>
         <img src={aboutImage} alt="Animated picture of a dev" title="Developer working" className="about__img"/>
       </div>

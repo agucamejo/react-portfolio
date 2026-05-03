@@ -6,26 +6,33 @@ import { Twirl as Hamburger } from 'hamburger-react';
 import './Header.scss';
 import Toggle from '../toggle/Toggle';
 
-type ActiveLink = 'about' | 'projects' | 'experience' | 'contact';
+type ActiveLink = 'about' | 'projects' | 'services' | 'workflow' | 'testimonials' | 'experience' | 'contact';
 
 interface HeaderProps {
   theme: string
   language: string
   setTheme: React.Dispatch<React.SetStateAction<"light" | "dark">>
   setLanguage: React.Dispatch<React.SetStateAction<"es" | "en">>
+  profile: 'particular' | 'empresa'
 }
 
-export const Header: React.FC<HeaderProps> = ({ theme, language, setTheme, setLanguage }) => {
+export const Header: React.FC<HeaderProps> = ({ theme, language, setTheme, setLanguage, profile }) => {
   const translations = {
     es: {
       about: "Sobre mi",
       projects: "Proyectos",
+      services: "Servicios",
+      workflow: "Proceso",
+      testimonials: "Testimonios",
       experience: "Experiencia",
       contact: "Contacto"
     },
     en: {
       about: "About me",
       projects: "Projects",
+      services: "Services",
+      workflow: "Workflow",
+      testimonials: "Testimonials",
       experience: "Experience",
       contact: "Contact"
     }
@@ -36,9 +43,12 @@ export const Header: React.FC<HeaderProps> = ({ theme, language, setTheme, setLa
   const [activeLink, setActiveLink] = useState<ActiveLink>('about');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const sectionsRef = useRef<Record<ActiveLink, HTMLElement | null>>({
+  const sectionsRef = useRef<Record<string, HTMLElement | null>>({
     about: null,
     projects: null,
+    services: null,
+    workflow: null,
+    testimonials: null,
     experience: null,
     contact: null,
   });
@@ -46,6 +56,9 @@ export const Header: React.FC<HeaderProps> = ({ theme, language, setTheme, setLa
   useEffect(() => {
     sectionsRef.current.about = document.querySelector('#about');
     sectionsRef.current.projects = document.querySelector('#projects');
+    sectionsRef.current.services = document.querySelector('#services');
+    sectionsRef.current.workflow = document.querySelector('#workflow');
+    sectionsRef.current.testimonials = document.querySelector('#testimonials');
     sectionsRef.current.experience = document.querySelector('#experience');
     sectionsRef.current.contact = document.querySelector('#contact');
 
@@ -68,7 +81,7 @@ export const Header: React.FC<HeaderProps> = ({ theme, language, setTheme, setLa
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [profile]);
 
   const handleClick = (link: ActiveLink) => {
     setActiveLink(link);
@@ -112,12 +125,36 @@ export const Header: React.FC<HeaderProps> = ({ theme, language, setTheme, setLa
             onClick={() => handleClick('projects')}
             navigateTo="#projects"
           />
-          <NavLink
-            label={t.experience}
-            isActive={activeLink === 'experience'}
-            onClick={() => handleClick('experience')}
-            navigateTo="#experience"
-          />
+          {profile === 'particular' && (
+            <>
+              <NavLink
+                label={t.services}
+                isActive={activeLink === 'services'}
+                onClick={() => handleClick('services')}
+                navigateTo="#services"
+              />
+              <NavLink
+                label={t.workflow}
+                isActive={activeLink === 'workflow'}
+                onClick={() => handleClick('workflow')}
+                navigateTo="#workflow"
+              />
+              <NavLink
+                label={t.testimonials}
+                isActive={activeLink === 'testimonials'}
+                onClick={() => handleClick('testimonials')}
+                navigateTo="#testimonials"
+              />
+            </>
+          )}
+          {profile !== 'particular' && (
+            <NavLink
+              label={t.experience}
+              isActive={activeLink === 'experience'}
+              onClick={() => handleClick('experience')}
+              navigateTo="#experience"
+            />
+          )}
           <NavLink
             label={t.contact}
             isActive={activeLink === 'contact'}

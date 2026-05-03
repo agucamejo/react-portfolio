@@ -8,8 +8,13 @@ import Footer from "./components/footer/Footer"
 import { useEffect, useState } from "react"
 import { EducationAndExperience } from "./components/education-experience/EducationAndExperience"
 import { WhatsAppButton } from "./components/whatsapp-button/WhatsAppButton"
+import { ProfileToggle } from "./components/profile-toggle/ProfileToggle"
+import { Services } from "./components/services/Services"
+import { Workflow } from "./components/workflow/Workflow"
+import { Testimonials } from "./components/testimonials/Testimonials"
 
 function App() {
+  const [profile, setProfile] = useState<"particular" | "empresa">("particular");
   const [language, setLanguage] = useState<"en" | "es">(() => {
     const stored = localStorage.getItem("language") as "en" | "es" | null;
     if (stored) return stored;
@@ -54,18 +59,30 @@ function App() {
 
   return (
     <>
-      <Header theme={theme} setTheme={setTheme} language={language} setLanguage={setLanguage}/>
+      <Header theme={theme} setTheme={setTheme} language={language} setLanguage={setLanguage} profile={profile} />
       <div className="layout">
-        <AboutMe theme={theme} language={language}/>
-        <Cards theme={theme} language={language}/>
-        <EducationAndExperience theme={theme} language={language}/>
+        <AboutMe theme={theme} language={language} profile={profile} />
+        <Cards theme={theme} language={language} profile={profile} />
+        {profile === "particular" && (
+          <>
+            <Services theme={theme} language={language} />
+            <Workflow theme={theme} language={language} />
+            <Testimonials theme={theme} language={language} />
+          </>
+        )}
+        {profile !== "particular" && (
+          <EducationAndExperience theme={theme} language={language} />
+        )}
       </div>
+      {profile !== "particular" && (
         <AutoPlay />
+      )}
       <div className="layout">
-        <ContactForm theme={theme} language={language}/>
-        <Footer theme={theme} language={language}/>
+        <ContactForm theme={theme} language={language} />
+        <Footer theme={theme} language={language} />
       </div>
-      <WhatsAppButton language={language} />
+      <WhatsAppButton language={language} theme={theme} />
+      <ProfileToggle profile={profile} setProfile={setProfile} language={language} theme={theme} />
     </>
   )
 }

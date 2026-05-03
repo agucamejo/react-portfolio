@@ -22,16 +22,17 @@ interface Project {
 interface CardsProps {
   theme: string
   language: 'es' | 'en'
+  profile: 'particular' | 'empresa'
 }
 
-export const Cards: React.FC<CardsProps> = ({ theme, language }) => {
+export const Cards: React.FC<CardsProps> = ({ theme, language, profile }) => {
   const [projects, setProjects] = useState<Project[]>([])
 
   useEffect(() => {
     AOS.init({
-      duration: 800, 
+      duration: 800,
       easing: "ease-in-out",
-      once: false, 
+      once: false,
     });
   }, []);
 
@@ -67,13 +68,13 @@ export const Cards: React.FC<CardsProps> = ({ theme, language }) => {
 
   return (
     <>
-      <SectionTitle title={language === 'es' ? 'Proyectos' : 'Projects'} theme={theme} />
+      <SectionTitle title={language === 'es' ? 'Proyectos' : 'Projects'} subtitle={language === 'es' ? 'Algunos de los proyectos en los que trabajé' : 'Some of the projects I\'ve worked on'} theme={theme} />
       <div className="cards__container" id='projects'>
         {projects.map((project, index) => (
           <div
             className={`cards__item ${index % 2 === 0 ? '' : 'cards__item--reverse'}`}
             key={index}
-            data-aos="fade-up"     
+            data-aos="fade-up"
             data-aos-delay={index * 100}
           >
             {project.images && project.images.length > 0 && (
@@ -82,20 +83,27 @@ export const Cards: React.FC<CardsProps> = ({ theme, language }) => {
             <div className="cards__item-info">
               <h4 className={`cards__item-name cards__item-name--${theme}`}>{project.name}</h4>
               <span className={`cards__item-description cards__item-description--${theme}`}>{project.description[language] || project.description.es}</span>
-              <div className="cards__item-tags">
-                {project.tags.map((tag, i) => (
-                  <span key={i} className="cards__item-tag">{tag}</span>
-                ))}
-              </div>
+              {profile !== 'particular' && (
+                <div className="cards__item-tags">
+                  {project.tags.map((tag, i) => (
+                    <span key={i} className="cards__item-tag">{tag}</span>
+                  ))}
+                </div>
+              )}
               <div className="cards__item-links">
-                {project.repository && (
+                {project.repository && profile !== 'particular' && (
                   <a href={project.repository} target="_blank" rel="noopener noreferrer" title='Github'>
-                    <Github fill={theme === 'dark' ? '#FBFBFB' : '#1A1A1A'}/>
+                    <Github fill={theme === 'dark' ? '#FBFBFB' : '#1A1A1A'} />
                   </a>
                 )}
                 {project.deploy && (
-                  <a href={project.deploy} target="_blank" rel="noopener noreferrer" title='Deploy'>
-                    <Link stroke={theme === 'dark' ? '#FBFBFB' : '#1A1A1A'}/>
+                  <a href={project.deploy} target="_blank" rel="noopener noreferrer" title='Deploy' className={profile === 'particular' ? 'cards__item-link--particular' : ''}>
+                    {profile === 'particular' && (
+                      <span className={`cards__item-link-text cards__item-link-text--${theme}`}>
+                        {language === 'es' ? 'Visita el sitio!' : 'Visit site!'}
+                      </span>
+                    )}
+                    <Link stroke={theme === 'dark' ? '#FBFBFB' : '#1A1A1A'} />
                   </a>
                 )}
               </div>
