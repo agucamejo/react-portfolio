@@ -59,7 +59,7 @@ function App() {
 
   return (
     <>
-      <Header theme={theme} setTheme={setTheme} language={language} setLanguage={setLanguage} profile={profile} />
+      <Header theme={theme} setTheme={setTheme} language={language} setLanguage={setLanguage} profile={profile} setProfile={setProfile} />
       <div className="layout">
         <AboutMe theme={theme} language={language} profile={profile} />
         <Cards theme={theme} language={language} profile={profile} />

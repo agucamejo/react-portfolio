@@ -1,22 +1,66 @@
 .profile-toggle {
-  position: fixed;
-  bottom: 30px;
-  left: 30px;
-  z-index: 1000;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  border-radius: 30px;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
+  z-index: 1000;
+  border-radius: 30px;
 
-  @media screen and (max-width: 768px) {
-    bottom: 20px;
-    top: auto;
-    left: 50%;
-    transform: translateX(-50%);
+  &--default {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+
+    @media screen and (max-width: 1024px) {
+      display: none; // Hide fixed toggle on mobile
+    }
 
     &.profile-toggle--scrolled {
-      top: 10px;
-      bottom: auto;
+      @media screen and (max-width: 768px) {
+        top: 10px;
+        bottom: auto;
+      }
+    }
+  }
+
+  &--mobile {
+    position: relative;
+    display: none;
+    box-shadow: none;
+    border: none !important;
+    background: transparent !important;
+    backdrop-filter: none;
+    margin: var(--spacer-xs) 0;
+    width: auto; // Change from 100% to auto to allow right alignment
+    justify-content: flex-end;
+
+    @media screen and (max-width: 1024px) {
+      display: flex;
+    }
+
+    .profile-toggle__inner {
+      width: auto;
+      justify-content: center;
+      background: var(--color-primary-50);
+      border: 1px solid var(--color-neutral-200);
+      padding: 3px; // Smaller padding
+      
+      .profile-toggle--dark & {
+        background: var(--color-secondary-900);
+        border-color: var(--color-neutral-800);
+      }
+    }
+
+    .profile-toggle__btn {
+      width: 90px; // Smaller buttons
+      padding: 6px 12px;
+      font-size: var(--font-size-xs);
+    }
+
+    .profile-toggle__indicator {
+      top: 3px;
+      left: 3px;
+      height: calc(100% - 6px);
+      width: calc(50% - 3px);
     }
   }
 
@@ -63,7 +107,7 @@
     width: 140px;
     text-align: center;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1024px) {
       width: 120px;
       padding: 8px 16px;
       font-size: var(--font-size-sm);

@@ -4,6 +4,7 @@ import { Expand } from "@theme-toggles/react"
 import NavLink from '../navlink/NavLink';
 import { Twirl as Hamburger } from 'hamburger-react';
 import './Header.scss';
+import { ProfileToggle } from '../profile-toggle/ProfileToggle';
 import Toggle from '../toggle/Toggle';
 
 type ActiveLink = 'about' | 'projects' | 'services' | 'workflow' | 'testimonials' | 'experience' | 'contact';
@@ -14,9 +15,10 @@ interface HeaderProps {
   setTheme: React.Dispatch<React.SetStateAction<"light" | "dark">>
   setLanguage: React.Dispatch<React.SetStateAction<"es" | "en">>
   profile: 'particular' | 'empresa'
+  setProfile: (profile: 'particular' | 'empresa') => void
 }
 
-export const Header: React.FC<HeaderProps> = ({ theme, language, setTheme, setLanguage, profile }) => {
+export const Header: React.FC<HeaderProps> = ({ theme, language, setTheme, setLanguage, profile, setProfile }) => {
   const translations = {
     es: {
       about: "Sobre mi",
@@ -89,6 +91,17 @@ export const Header: React.FC<HeaderProps> = ({ theme, language, setTheme, setLa
     setIsMenuOpen(false);
   };
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMenuOpen]);
+
   const handleToggleTheme = () => {
     setTheme(prev => (prev === "light" ? "dark" : "light"))
   }
@@ -102,15 +115,15 @@ export const Header: React.FC<HeaderProps> = ({ theme, language, setTheme, setLa
       <div className='header__inner'>
         <div className="header__title">
           <button aria-label="Toggle theme" title="Toggle theme" className={`header__theme-icon header__theme-icon--${theme}`} onClick={handleToggleTheme}>
-            <Expand 
-              duration={750} 
-              placeholder={undefined} 
-              onPointerEnterCapture={undefined} 
-              onPointerLeaveCapture={undefined} 
+            <Expand
+              duration={750}
+              placeholder={undefined}
+              onPointerEnterCapture={undefined}
+              onPointerLeaveCapture={undefined}
             />
           </button>
           <div className="header__hamburger">
-            <Hamburger toggled={isMenuOpen} toggle={setIsMenuOpen} size={18}/>
+            <Hamburger toggled={isMenuOpen} toggle={setIsMenuOpen} size={18} />
           </div>
         </div>
         <nav className={`header__navbar ${isMenuOpen ? `header__navbar--open header__navbar--open--${theme}` : ''}`}>
@@ -162,9 +175,18 @@ export const Header: React.FC<HeaderProps> = ({ theme, language, setTheme, setLa
             onClick={() => handleClick('contact')}
             navigateTo="#contact"
           />
+          <div className="header__profile-toggle-mobile">
+            <ProfileToggle
+              profile={profile}
+              setProfile={setProfile}
+              language={language as 'es' | 'en'}
+              theme={theme}
+              variant="mobile"
+            />
+          </div>
           <div className="header__language-toggle-mobile">
             <Toggle
-              value={language as "en" | "es"} 
+              value={language as "en" | "es"}
               onToggle={handleLanguageToggle}
               rightContent={<img src="https://flagcdn.com/gb.svg" alt="English" width={24} />}
               leftContent={<img src="https://flagcdn.com/es.svg" alt="Spanish" width={24} />}
@@ -173,7 +195,7 @@ export const Header: React.FC<HeaderProps> = ({ theme, language, setTheme, setLa
         </nav>
         <div className="header__language-toggle">
           <Toggle
-            value={language as "en" | "es"} 
+            value={language as "en" | "es"}
             onToggle={handleLanguageToggle}
             rightContent={<img src="https://flagcdn.com/gb.svg" alt="English" width={24} />}
             leftContent={<img src="https://flagcdn.com/es.svg" alt="Spanish" width={24} />}

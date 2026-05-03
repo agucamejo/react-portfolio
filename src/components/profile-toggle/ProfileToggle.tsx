@@ -6,19 +6,21 @@ interface ProfileToggleProps {
   setProfile: (profile: 'particular' | 'empresa') => void;
   language: 'es' | 'en';
   theme: string;
+  variant?: 'default' | 'mobile';
 }
 
-export const ProfileToggle: React.FC<ProfileToggleProps> = ({ profile, setProfile, language, theme }) => {
+export const ProfileToggle: React.FC<ProfileToggleProps> = ({ profile, setProfile, language, theme, variant = 'default' }) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
+    if (variant === 'mobile') return;
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [variant]);
 
   const t = {
     es: { particular: 'Particular', empresa: 'Empresa' },
@@ -26,7 +28,7 @@ export const ProfileToggle: React.FC<ProfileToggleProps> = ({ profile, setProfil
   };
 
   return (
-    <div className={`profile-toggle profile-toggle--${theme} ${isScrolled ? 'profile-toggle--scrolled' : ''}`}>
+    <div className={`profile-toggle profile-toggle--${theme} profile-toggle--${variant} ${isScrolled ? 'profile-toggle--scrolled' : ''}`}>
       <div className="profile-toggle__inner">
         <div 
           className="profile-toggle__indicator" 
