@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Services.scss';
 import { SectionTitle } from '../section-title/SectionTitle';
 import AOS from 'aos';
