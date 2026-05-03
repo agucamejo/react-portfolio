@@ -168,7 +168,7 @@ export const EducationAndExperience: React.FC<EducationAndExperienceProps> = ({ 
       <div className={`experience experience--${theme}`} id="experience">
 
         <div className="experience__cards">
-          <h4 className={`experience__cards-title experience__cards-title--education experience__cards-title--${theme}`}><Study stroke={theme === 'dark' ? '#FBFBFB' : '#1A1A1A'} />{t.educationCard.title}</h4>
+          <h3 className={`experience__cards-title experience__cards-title--education experience__cards-title--${theme}`}><Study stroke={theme === 'dark' ? '#FBFBFB' : '#1A1A1A'} />{t.educationCard.title}</h3>
           {t.educationCard.educations.map((edu, index) => (
             <div
               className={`experience__cards-item experience__cards-item--${theme}`}
@@ -188,7 +188,7 @@ export const EducationAndExperience: React.FC<EducationAndExperienceProps> = ({ 
         </div>
 
         <div className="experience__cards">
-          <h4 className={`experience__cards-title experience__cards-title--${theme}`}><Work fill={theme === 'dark' ? '#FBFBFB' : '#1A1A1A'} />{t.workCard.title}</h4>
+          <h3 className={`experience__cards-title experience__cards-title--${theme}`}><Work fill={theme === 'dark' ? '#FBFBFB' : '#1A1A1A'} />{t.workCard.title}</h3>
           {t.workCard.works.map((work, index) => {
             const isExpanded = expandedCards[index] || false
             const showMore = work.description.length > 180

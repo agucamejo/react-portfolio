@@ -9,10 +9,21 @@
 
     @media screen and (max-width: 900px) {
       grid-template-columns: repeat(2, 1fr);
+
+      .testimonials__card:last-child:nth-child(odd) {
+        grid-column: 1 / span 2;
+        justify-self: center;
+        width: calc(50% - var(--spacer-xl) / 2);
+      }
     }
 
     @media screen and (max-width: 600px) {
       grid-template-columns: 1fr;
+
+      .testimonials__card:last-child:nth-child(odd) {
+        grid-column: auto;
+        width: 100%;
+      }
     }
   }
 

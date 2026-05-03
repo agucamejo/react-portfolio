@@ -32,14 +32,14 @@ export const Footer: React.FC<FooterProps> = ({ theme, language }) => {
           <ArrowDownCircle />
         </button>
       </div>
-      {language === 'en' ? 
-          <p className="copyright">
-            Copyright © {currentYear} - Made with <span className="heart">❤️</span> by Agustín Camejo
-          </p>
+      {language === 'en' ?
+        <p className="copyright">
+          Copyright © {currentYear} - Made with <span className="heart">❤️</span> by Agustín Camejo
+        </p>
         :
-          <p className="copyright">
-            Derechos reservados © {currentYear} - Hecho con <span className="heart">❤️</span> por Agustín Camejo
-          </p>
+        <p className="copyright">
+          Derechos reservados © {currentYear} - Hecho con <span className="heart">❤️</span> por Agustín Camejo
+        </p>
       }
     </footer>
   )

@@ -16,15 +16,15 @@ export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ language = 'es',
   const message = messages[language]
   const whatsappUrl = `https://wa.me/5493562409599?text=${encodeURIComponent(message)}`
 
-    const tooltipText = {
-        es: "Contame tu idea",
-        en: "Tell me your idea"
-    }
+  const tooltipText = {
+    es: "Contame tu idea",
+    en: "Tell me your idea"
+  }
 
-    return(
-        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" title='WhatsApp' className={`whatsapp-button whatsapp-button--${theme}`}>
-            <span className="whatsapp-button__tooltip">{tooltipText[language]}</span>
-            <Whatsapp />
-        </a>
-    );
+  return (
+    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" title='WhatsApp' className={`whatsapp-button whatsapp-button--${theme}`}>
+      <span className="whatsapp-button__tooltip">{tooltipText[language]}</span>
+      <Whatsapp />
+    </a>
+  );
 }

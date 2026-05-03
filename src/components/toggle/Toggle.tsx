@@ -21,9 +21,8 @@ const Toggle: React.FC<ToggleProps> = ({
       </div>
 
       <div
-        className={`toggle__switch ${
-          value === "en" ? "toggle__switch--right" : "toggle__switch--left"
-        }`}
+        className={`toggle__switch ${value === "en" ? "toggle__switch--right" : "toggle__switch--left"
+          }`}
         onClick={onToggle}
       >
         <div className="toggle__thumb" />

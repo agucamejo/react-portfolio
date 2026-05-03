@@ -55,7 +55,11 @@ export const Cards: React.FC<CardsProps> = ({ theme, language, profile }) => {
           const [name, description_es, description_en, tags, repository, deploy, image] = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
 
           const formattedTags = tags ? tags.replace(/^"|"$/g, '').split(',').map(tag => tag.trim()) : []
-          const formattedImages = image ? image.replace(/^"|"$/g, '').split(',').map(img => img.trim()) : []
+          const formattedImages = image 
+            ? image.replace(/^"|"$/g, '')
+                   .split(',')
+                   .map(img => img.trim().replace(/['"]+/g, '').replace(/%20/g, '')) 
+            : []
 
           return { name, description: { es: description_es, en: description_en }, tags: formattedTags, repository, deploy, images: formattedImages }
         })
@@ -92,12 +96,12 @@ export const Cards: React.FC<CardsProps> = ({ theme, language, profile }) => {
               )}
               <div className="cards__item-links">
                 {project.repository && profile !== 'particular' && (
-                  <a href={project.repository} target="_blank" rel="noopener noreferrer" title='Github'>
+                  <a href={project.repository} target="_blank" rel="noopener noreferrer" title='Github' aria-label="Visit GitHub repository">
                     <Github fill={theme === 'dark' ? '#FBFBFB' : '#1A1A1A'} />
                   </a>
                 )}
                 {project.deploy && (
-                  <a href={project.deploy} target="_blank" rel="noopener noreferrer" title='Deploy' className={profile === 'particular' ? 'cards__item-link--particular' : ''}>
+                  <a href={project.deploy} target="_blank" rel="noopener noreferrer" title='Deploy' aria-label="Visit live site" className={profile === 'particular' ? 'cards__item-link--particular' : ''}>
                     {profile === 'particular' && (
                       <span className={`cards__item-link-text cards__item-link-text--${theme}`}>
                         {language === 'es' ? 'Visita el sitio!' : 'Visit site!'}

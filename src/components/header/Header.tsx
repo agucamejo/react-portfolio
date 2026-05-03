@@ -72,7 +72,8 @@ export const Header: React.FC<HeaderProps> = ({ theme, language, setTheme, setLa
         });
       },
       {
-        threshold: 0.5,
+        threshold: 0,
+        rootMargin: "-150px 0px -50% 0px"
       }
     );
 
@@ -97,10 +98,10 @@ export const Header: React.FC<HeaderProps> = ({ theme, language, setTheme, setLa
   };
 
   return (
-    <div className={`header header--${theme}`}>
+    <header className={`header header--${theme}`}>
       <div className='header__inner'>
-        <header className="header__title">
-          <button aria-label="Toggle theme" className={`header__theme-icon header__theme-icon--${theme}`} onClick={handleToggleTheme}>
+        <div className="header__title">
+          <button aria-label="Toggle theme" title="Toggle theme" className={`header__theme-icon header__theme-icon--${theme}`} onClick={handleToggleTheme}>
             <Expand 
               duration={750} 
               placeholder={undefined} 
@@ -111,7 +112,7 @@ export const Header: React.FC<HeaderProps> = ({ theme, language, setTheme, setLa
           <div className="header__hamburger">
             <Hamburger toggled={isMenuOpen} toggle={setIsMenuOpen} size={18}/>
           </div>
-        </header>
+        </div>
         <nav className={`header__navbar ${isMenuOpen ? `header__navbar--open header__navbar--open--${theme}` : ''}`}>
           <NavLink
             label={t.about}
@@ -179,7 +180,7 @@ export const Header: React.FC<HeaderProps> = ({ theme, language, setTheme, setLa
           />
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 
