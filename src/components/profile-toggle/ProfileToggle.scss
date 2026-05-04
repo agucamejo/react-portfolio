@@ -11,7 +11,7 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 
     @media screen and (max-width: 1024px) {
-      display: none; // Hide fixed toggle on mobile
+      display: none;
     }
 
     &.profile-toggle--scrolled {
@@ -30,7 +30,7 @@
     background: transparent !important;
     backdrop-filter: none;
     margin: var(--spacer-xs) 0;
-    width: auto; // Change from 100% to auto to allow right alignment
+    width: auto;
     justify-content: flex-end;
 
     @media screen and (max-width: 1024px) {
@@ -42,8 +42,8 @@
       justify-content: center;
       background: var(--color-primary-50);
       border: 1px solid var(--color-neutral-200);
-      padding: 3px; // Smaller padding
-      
+      padding: 3px;
+
       .profile-toggle--dark & {
         background: var(--color-secondary-900);
         border-color: var(--color-neutral-800);
@@ -51,7 +51,7 @@
     }
 
     .profile-toggle__btn {
-      width: 90px; // Smaller buttons
+      width: 90px;
       padding: 6px 12px;
       font-size: var(--font-size-xs);
     }
@@ -111,10 +111,18 @@
       width: 120px;
       padding: 8px 16px;
       font-size: var(--font-size-sm);
+
+      &--dark {
+        color: var(--color-neutral-1000) !important;
+      }
+
+      &--active {
+        color: var(--color-white) !important;
+      }
     }
 
     &--light {
-      color: var(--color-neutral-800);
+      color: var(--color-neutral-1000);
     }
 
     &--dark {
