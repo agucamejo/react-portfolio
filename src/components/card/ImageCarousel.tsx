@@ -34,11 +34,12 @@ export const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, alt, class
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {images.map((img, index) => (
-          <img
-            key={index}
-            src={img.startsWith('http') ? img : `https://www.imghippo.com/i/${img}`}
-            alt={`${alt} - ${index + 1}`}
-            className={`image-carousel__image ${isSpecialVerticalImage(alt, index, images.length) ? 'image-carousel__image--contain' : ''}`}
+          <CarouselImage 
+            key={index} 
+            img={img} 
+            index={index} 
+            alt={alt} 
+            isSpecial={isSpecialVerticalImage(alt, index, images.length)} 
           />
         ))}
       </div>
@@ -54,6 +55,32 @@ export const ImageCarousel: React.FC<ImageCarouselProps> = ({ images, alt, class
           ))}
         </div>
       )}
+    </div>
+  );
+};
+
+interface CarouselImageProps {
+  img: string;
+  index: number;
+  alt: string;
+  isSpecial: boolean;
+}
+
+const CarouselImage: React.FC<CarouselImageProps> = ({ img, index, alt, isSpecial }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  return (
+    <div className="image-carousel__image-wrapper">
+      {!isLoaded && (
+        <div className="image-carousel__skeleton"></div>
+      )}
+      <img
+        src={img.startsWith('http') ? img : `https://www.imghippo.com/i/${img}`}
+        alt={`${alt} - ${index + 1}`}
+        onLoad={() => setIsLoaded(true)}
+        className={`image-carousel__image ${isSpecial ? 'image-carousel__image--contain' : ''}`}
+        style={{ display: isLoaded ? 'block' : 'none' }}
+      />
     </div>
   );
 };
